@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application</title>
+</head>
+<body style="background-color:Thistle;">
+<h2 style="font-family:timesnewroman; font-size:300%"> <i>Application Form</i></h2>
+<form <form action="application" method="post" >
+
+  {% csrf_token %}
+  <label> Name:</label><input type="text" name="username" placeholder="Name"><br>
+  <label> Date of birth:</label><input type="date" name="date" placeholder="Enter your date of birth:"><br>
+    <label>Age:</label><input type="number" name="number" placeholder="Age"><br>
+    <label> Email:</label> <input type="email" id="email" name="email"/> <br>
+    <br>
+<label>Address:</label>
+    <textarea cols="80" rows="5" value="address">
+</textarea>
+     <label>Phone :</label>
+        <input type="text" name="country code"  value="+91" size="2"/>
+        <input type="text" name="phone" size="10"/> <br> <br>
+    <br> <br>
+<br> <br>
+   <label>Gender:<br>
+        <input type="radio" name="male"/> Male <br>
+        <input type="radio" name="female"/> Female <br>
+        <input type="radio" name="other"/> Other<br>
+    </label>
+
+
+
+    <br><br>
+
+    <script>
+var subjectObject = {
+  "Trivandrum": ["Varkala", "Neyyantinkara", "Nedumangadu", "Kattakada"],
+   "Cochin": ["Piravam", "Moovattupuzha", "Aluva", "Angamaly","Perumbavvor"],
+   "Thrissur":     ["chalakkudy","chavakkad","Mannuthy","Guruvaayoor","Kodungallur"] ,
+    "Malappuram":["Manjeri", "Tirur", "Kondotty", "Kottakal","Nilambur"],
+    "Kannur": ["kannur", "Iritty", "mahee", "Mattannor"]
+}
+window.onload = function() {
+  var districtSel = document.getElementById("district");
+  var branchSel = document.getElementById("branch");
+
+   for (var x in subjectObject) {
+    districtSel.options[districtSel.options.length] = new Option(x, x);
+  }
+  districtSel.onchange = function() {
+ //empty Chapters- and Topics- dropdowns
+
+ branchSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      branchSel.options[branchSel.options.length] = new Option(y, y);
+    }
+  }
+
+}
+</script>
+
+
+
+
+
+<!--<form name="form1" id="form1" action="application">-->
+District: <select name="district" id="district">
+    <option value="" selected="selected">Select district</option>
+  </select>
+  <br><br>
+branch: <select name="branch" id="branch">
+    <option value="" selected="selected">Please select branch</option>
+  </select>
+  <br><br>
+<!--  </form>-->
+
+
+ <label>Account type :</label>
+<select><option value="Account">Account type</option>
+    <option value="Saving Account">Savings Account</option>
+    <option value="Current Account">Current Account</option>
+    <option value="NRI account">NRI account</option>
+    <option value="Salary Account">Salary Account</option>
+</select>
+<br><br>
+<label>Materials :</label><br>
+    <input type="checkbox" id="debit" name="debit" value="debit">
+  <label for="debit"> Debit card</label><br>
+  <input type="checkbox" id="credit" name="credit" value="credit card">
+  <label for="credit"> credit card</label><br>
+  <input type="checkbox" id="checkbook" name="checkbook" value="checkbook">
+  <label for="checkbook"> Check book</label><br><br>
+
+
+
+  <input type="submit">
+</form>
+</body>
+</html>
+
