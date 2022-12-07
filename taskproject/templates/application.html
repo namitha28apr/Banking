@@ -32,50 +32,44 @@
 
     <br><br>
 
-    <script>
-var subjectObject = {
-  "Trivandrum": ["Varkala", "Neyyantinkara", "Nedumangadu", "Kattakada"],
-   "Cochin": ["Piravam", "Moovattupuzha", "Aluva", "Angamaly","Perumbavvor"],
-   "Thrissur":     ["chalakkudy","chavakkad","Mannuthy","Guruvaayoor","Kodungallur"] ,
-    "Malappuram":["Manjeri", "Tirur", "Kondotty", "Kottakal","Nilambur"],
-    "Kannur": ["kannur", "Iritty", "mahee", "Mattannor"]
-}
-window.onload = function() {
-  var districtSel = document.getElementById("district");
-  var branchSel = document.getElementById("branch");
+    <select id="district" onchange="ChangeCityList()">
+  <option value="">-- District --</option><br>
+  <option value="TRVANDRUM">Trivandrum</option>
+  <option value="COK">Cochin</option>
+  <option value="THSSR">Thrissur</option>
+  <option value="MLPRM">Malappuram</option>
+  <option value="KNR">Kannur</option>
+</select>
 
-   for (var x in subjectObject) {
-    districtSel.options[districtSel.options.length] = new Option(x, x);
+<select id="Branch"></select>
+
+<script>
+var Districtsel = {};
+Districtsel['TRVANDRUM'] = ["Varkala", "Neyyantinkara", "Nedumangadu", "Kattakada","Chirayinkeezhu"];
+Districtsel['COK'] = ["Piravam", "Moovattupuzha", "Aluva", "Angamaly","Perumbavvor"];
+Districtsel['THSSR'] = ["chalakkudy","chavakkad","Mannuthy","Guruvaayoor","Kodungallur"];
+Districtsel['MLPRM'] = ["Manjeri", "Tirur", "Kondotty", "Kottakal","Nilambur"];
+Districtsel['KNR'] = ["kannur", "Iritty", "mahee", "Mattannor","Chirakkal"];
+
+function ChangeCityList() {
+  var distList = document.getElementById("district");
+  var branchList = document.getElementById("Branch");
+  var seldist = distList.options[distList.selectedIndex].value;
+  while (branchList.options.length) {
+    branchList.remove(0);
   }
-  districtSel.onchange = function() {
- //empty Chapters- and Topics- dropdowns
-
- branchSel.length = 1;
-    //display correct values
-    for (var y in subjectObject[this.value]) {
-      branchSel.options[branchSel.options.length] = new Option(y, y);
+  var city = Districtsel[seldist];
+  if (city) {
+    var i;
+    for (i = 0; i < city.length; i++) {
+      var bank = new Option(city[i], i);
+      branchList.options.add(bank);
     }
   }
-
 }
 </script>
 
-
-
-
-
-<!--<form name="form1" id="form1" action="application">-->
-District: <select name="district" id="district">
-    <option value="" selected="selected">Select district</option>
-  </select>
-  <br><br>
-branch: <select name="branch" id="branch">
-    <option value="" selected="selected">Please select branch</option>
-  </select>
-  <br><br>
-<!--  </form>-->
-
-
+<br>
  <label>Account type :</label>
 <select><option value="Account">Account type</option>
     <option value="Saving Account">Savings Account</option>
